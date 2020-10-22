@@ -4,11 +4,23 @@
     <meta charset="UTF-8">
 </head>
 <body>
-    <h1>Items</h1>
-    <ul>
     {% for item in items %}
-        <li><b>{{ item.name }}:</b> your sale price: <b>${{ item.orig_price }}</b>, current online price: <b>${{ item.current_price }}</b></li>
+        <b><a href="{{ item.url }}">{{ item.name }}:</a></b>
+        <ul>
+            <li>your sale price: <b>${{ item.orig_price }}</b></li>
+            {% if item.current_price < item.orig_price %}
+                {% set current_price_color = 'green' %}
+                {% set arrow = '&#8681;' %}
+            {% elif item.current_price > item.orig_price %}
+                {% set current_price_color = 'red' %}
+                {% set arrow = '&#8679;' %}
+            {% else %}
+                {% set current_price_color = 'black' %}
+                {% set arrow = '&#8680;' %}
+            {% endif %}
+            <li>current online price: <b style="color: {{ current_price_color }}">${{ item.current_price }} <span style="font-size: 18px">{{ arrow }}</span></b></li>
+        </ul>
+        <br>
     {% endfor %}
-    </ul>
 </body>
 </html>
