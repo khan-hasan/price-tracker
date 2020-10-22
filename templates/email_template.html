@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>Items</h1>
+    <ul>
+    {% for item in items %}
+        <li><b>{{ item.name }}:</b> your sale price: <b>${{ item.orig_price }}</b>, current online price: <b>${{ item.current_price }}</b></li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
